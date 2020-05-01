@@ -5,6 +5,7 @@
 #include <QObject>
 #include <QGraphicsItem>
 
+#include "bullet.h"
 
 
 class Player:public QObject, public QGraphicsPixmapItem{

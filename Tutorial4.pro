@@ -27,11 +27,13 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
     player.cpp \
-    game.cpp
+    game.cpp \
+    bullet.cpp
 
 HEADERS += \
     game.h \
-    player.h
+    player.h \
+    bullet.h
 
 FORMS +=
 
