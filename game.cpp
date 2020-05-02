@@ -5,34 +5,48 @@
 #include <QBrush>
 #include <QImage>
 
+
 Game::Game(QWidget *parent){
-    // create the scene
+    // Create scene.
     scene = new QGraphicsScene();
     scene->setSceneRect(0,0,800,600);
     setBackgroundBrush(QBrush(QImage(":/Images/Background.jpg")));
 
-    // it can be used to visualize scenes)
     setScene(scene);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setFixedSize(800,600);
 
-    // create the player
-    player = new Player();
-    player->setPos(400,500);
+        // Create player.
+        player = new Player();
+        player->setPos(400,500);
 
-    // make the player focusable
-    player->setFlag(QGraphicsItem::ItemIsFocusable);
-    player->setFocus();
+        // Set focus on player.
+        player->setFlag(QGraphicsItem::ItemIsFocusable);
+        player->setFocus();
 
-    // add the player to the scene
-    scene->addItem(player);
+        // Add player.
+        scene->addItem(player);
+
+        // Add score/health.
+        score = new Score();
+        scene->addItem(score);
+        health = new Health();
+        health->setPos(health->x(),health->y()+25);
+        scene->addItem(health);
+
+        // Spawn enemies
+        QTimer * timer = new QTimer();
+        QObject::connect(timer,SIGNAL(timeout()),player,SLOT(spawn()));
+        timer->start(2000);
 
 
-    // spawn enemies
-    QTimer * timer = new QTimer();
-    timer->start(2000);
-
-
-    show();
+        show();
 }
+
+
+
+
+
+
+
